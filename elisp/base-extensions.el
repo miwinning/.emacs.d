@@ -24,7 +24,6 @@
 (setq dashboard-set-file-icons t)
 (setq show-week-agenda-p t)
 
-
 (use-package ediff
   :config
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -57,7 +56,8 @@
   ("C-x v" . counsel-projectile)
   ("C-x c p" . counsel-projectile-ag)
   :config
-  (counsel-projectile-on))
+  (counsel-projectile-mode)
+  )
 
 (use-package ivy
   :bind
@@ -121,7 +121,11 @@
   (setq projectile-known-projects-file
         (expand-file-name "projectile-bookmarks.eld" temp-dir))
   (setq projectile-completion-system 'ivy)
-  (projectile-global-mode))
+  (projectile-global-mode)
+;; Use C-c p for counsel-projectile keys
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+  )
 
 (use-package recentf
   :config
