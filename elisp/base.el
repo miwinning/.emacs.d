@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ;;;; Garbage collection
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;; see http://akrl.sdf.org
@@ -11,6 +12,8 @@
   (add-hook 'emacs-startup-hook
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
+=======
+>>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
 (package-initialize)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/")
@@ -38,7 +41,11 @@
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 ;; Emacs customizations
+<<<<<<< HEAD
 (setq confirm-kill-emacs                  'nil
+=======
+(setq confirm-kill-emacs                  'y-or-n-p
+>>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
       confirm-nonexistent-file-or-buffer  t
       save-interprogram-paste-before-kill t
       mouse-yank-at-point                 t
@@ -100,6 +107,7 @@
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+<<<<<<< HEAD
 (cua-mode t)
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 (transient-mark-mode 1) ;; No region when it is not highlighted
@@ -108,5 +116,7 @@
 ;;Line numbers in prog mode
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
+=======
+>>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
 (provide 'base)
 ;;; base ends here

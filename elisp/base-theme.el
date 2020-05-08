@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (use-package doom-themes
   :defer t
   :init
@@ -21,6 +22,8 @@
 (setq doom-modeline-major-mode-icon nil)
 (setq doom-modeline-buffer-encoding nil)
 (setq doom-modeline-indent-info nil)
+=======
+>>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
 
 
 (provide 'base-theme)

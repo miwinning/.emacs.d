@@ -3,6 +3,7 @@
 ;; (defun something
 ;;    (do-something))
 
+<<<<<<< HEAD
 ;;; Move a line or region up/down
 ;; Moves line if no region marked, or current line if no region marked
 
@@ -61,4 +62,6 @@
 (global-set-key (kbd "M-<up>") 'move-line-region-up)
 (global-set-key (kbd "M-<down>") 'move-line-region-down)
 
+=======
+>>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
 (provide 'base-functions)
