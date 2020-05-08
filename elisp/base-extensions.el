@@ -7,7 +7,6 @@
   (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package dashboard
-<<<<<<< HEAD
   :ensure t
   :config )
 (dashboard-setup-startup-hook)
@@ -24,10 +23,7 @@
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
 (setq show-week-agenda-p t)
-=======
-  :config
-  (dashboard-setup-startup-hook))
->>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
+
 
 (use-package ediff
   :config
@@ -67,33 +63,20 @@
   :bind
   ("C-x s" . swiper)
   ("C-x C-r" . ivy-resume)
-<<<<<<< HEAD
   (:map ivy-mode-map ("C-'" . ivy-avy))
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
-  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
-=======
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers nil)
-  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
-{% else %}
->>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
+  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+)
+
 
 (use-package hlinum
   :config
   (hlinum-activate))
 
-<<<<<<< HEAD
 ;; Line hilight
 (global-hl-line-mode +1)
-=======
-(use-package linum
-  :config
-  (setq linum-format " %3d ")
-  (global-linum-mode nil))
->>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
 
 (use-package magit
   :config
@@ -137,13 +120,7 @@
   :config
   (setq projectile-known-projects-file
         (expand-file-name "projectile-bookmarks.eld" temp-dir))
-<<<<<<< HEAD
   (setq projectile-completion-system 'ivy)
-=======
-  {% if frontend == 'ivy' %}
-  (setq projectile-completion-system 'ivy)
-  {% endif %}
->>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
   (projectile-global-mode))
 
 (use-package recentf
@@ -180,13 +157,10 @@
   :config
   (yas-global-mode 1))
 
-<<<<<<< HEAD
 (use-package dumb-jump
   :bind (("M-." . dumb-jump-go)
          ("M-," . dumb-jump-back))
   :config (setq dumb-jump-selector 'ivy)
   :ensure)
 
-=======
->>>>>>> 6d0f3268c29ecaa20caae9a3baa5bf3687ad614a
 (provide 'base-extensions)
