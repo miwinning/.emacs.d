@@ -1,3 +1,16 @@
+;;;; Garbage collection
+;; Adjust garbage collection thresholds during startup, and thereafter
+;; see http://akrl.sdf.org
+;; https://gitlab.com/koral/gcmh
+;; NOTE: The system linked above generates too many GC pauses so I'm using my own mixed setup
+;; https://github.com/purcell/emacs.d/blob/3b1302f2ce3ef2f69641176358a38fd88e89e664/init.el#L24
+
+(let ((normal-gc-cons-threshold (* 20 1024 1024))
+      (init-gc-cons-threshold (* 128 1024 1024)))
+  (setq gc-cons-threshold init-gc-cons-threshold)
+  (add-hook 'emacs-startup-hook
+            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+
 (package-initialize)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/")
@@ -25,7 +38,7 @@
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 ;; Emacs customizations
-(setq confirm-kill-emacs                  'y-or-n-p
+(setq confirm-kill-emacs                  'nil
       confirm-nonexistent-file-or-buffer  t
       save-interprogram-paste-before-kill t
       mouse-yank-at-point                 t
@@ -86,6 +99,14 @@
 
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(cua-mode t)
+(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+(transient-mark-mode 1) ;; No region when it is not highlighted
+;;(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+
+;;Line numbers in prog mode
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (provide 'base)
 ;;; base ends here

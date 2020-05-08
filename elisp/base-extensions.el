@@ -7,8 +7,22 @@
   (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package dashboard
-  :config
-  (dashboard-setup-startup-hook))
+  :ensure t
+  :config )
+(dashboard-setup-startup-hook)
+
+(setq dashboard-items '((recents  . 7)
+                        (projects . 7)
+  			    (agenda . 7)
+                        (bookmarks . 7)))
+
+(setq dashboard-banner-logo-title "You suck!")
+;; Set the banner
+(setq dashboard-startup-banner nil)
+
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+(setq show-week-agenda-p t)
 
 (use-package ediff
   :config
@@ -48,20 +62,18 @@
   :bind
   ("C-x s" . swiper)
   ("C-x C-r" . ivy-resume)
+  (:map ivy-mode-map ("C-'" . ivy-avy))
   :config
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers nil)
+  (setq ivy-use-virtual-buffers t)
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
-{% else %}
 
 (use-package hlinum
   :config
   (hlinum-activate))
 
-(use-package linum
-  :config
-  (setq linum-format " %3d ")
-  (global-linum-mode nil))
+;; Line hilight
+(global-hl-line-mode +1)
 
 (use-package magit
   :config
@@ -105,9 +117,7 @@
   :config
   (setq projectile-known-projects-file
         (expand-file-name "projectile-bookmarks.eld" temp-dir))
-  {% if frontend == 'ivy' %}
   (setq projectile-completion-system 'ivy)
-  {% endif %}
   (projectile-global-mode))
 
 (use-package recentf
@@ -143,5 +153,11 @@
 (use-package yasnippet
   :config
   (yas-global-mode 1))
+
+(use-package dumb-jump
+  :bind (("M-." . dumb-jump-go)
+         ("M-," . dumb-jump-back))
+  :config (setq dumb-jump-selector 'ivy)
+  :ensure)
 
 (provide 'base-extensions)
