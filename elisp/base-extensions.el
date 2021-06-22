@@ -61,7 +61,7 @@
 
 (use-package ivy
   :bind
-  ("C-x s" . swiper)
+  ("C-s" . swiper)
   ("C-x C-r" . ivy-resume)
   (:map ivy-mode-map ("C-'" . ivy-avy))
   :config
@@ -70,13 +70,19 @@
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 )
 
-
 (use-package hlinum
   :config
   (hlinum-activate))
 
 ;; Line hilight
 (global-hl-line-mode +1)
+
+(use-package git-gutter
+  :config
+  )
+(global-git-gutter-mode t)
+(add-hook 'elisp-mode-hook 'git-gutter-mode)
+(add-hook 'cc-mode-hook 'git-gutter-mode)
 
 (use-package magit
   :config
@@ -166,5 +172,31 @@
          ("M-," . dumb-jump-back))
   :config (setq dumb-jump-selector 'ivy)
   :ensure)
+
+(use-package tree-sitter
+  :config
+)
+
+(use-package tree-sitter-langs)
+(global-tree-sitter-mode)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-a l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (c-mode . lsp)
+	 (c++-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+
+(add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
 
 (provide 'base-extensions)
